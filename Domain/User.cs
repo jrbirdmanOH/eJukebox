@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 namespace Domain
-{
-    public partial class User
+{ 
+    public partial class User : DomainObject
     {
         public User()
         {

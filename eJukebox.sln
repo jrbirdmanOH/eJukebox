@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject1", "UnitTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{A9046EF7-9C13-4DB3-9CCF-D90A87A78562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{EF61C60C-E4D4-4A64-BAAB-837708F61979}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{EF61C60C-E4D4-4A64-BAAB-837708F61979}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eJukeboxWebApp2", "eJukeboxWebApp2\eJukeboxWebApp2.csproj", "{0E8ED88D-E302-493F-9149-3152EC4CC55D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EF61C60C-E4D4-4A64-BAAB-837708F61979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF61C60C-E4D4-4A64-BAAB-837708F61979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF61C60C-E4D4-4A64-BAAB-837708F61979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E8ED88D-E302-493F-9149-3152EC4CC55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8ED88D-E302-493F-9149-3152EC4CC55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8ED88D-E302-493F-9149-3152EC4CC55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8ED88D-E302-493F-9149-3152EC4CC55D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

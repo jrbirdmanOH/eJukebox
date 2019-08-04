@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface ISetRepository
     {
-        Domain.Set Add(Domain.Set entity);
-        Domain.Set Get(int id);
-        IQueryable<Data.Models.Set> Table();
+        Set Add(Set entity);
+        Set Get(int id);
+        IQueryable<Set> Table();
     }
 
     public class SetRepository : Repository, ISetRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.Set Add(Domain.Set domain)
+        public Set Add(Set entity)
         {
-            return base.Add<Data.Models.Set>(domain.ToEntity()).ToDomain();
+            return base.Add<Set>(entity);
         }
 
-        public void Update(Domain.Set updatedDomain)
+        public void Update(Set updatedEntity)
         {
-            base.Save<Data.Models.Set>(updatedDomain.ToEntity(), updatedDomain.Id);
+            base.Save<Set>(updatedEntity, updatedEntity.Id);
         }
 
-        public Domain.Set Get(int id)
+        public Set Get(int id)
         {
-            return base.Get<Data.Models.Set>(id).ToDomain();
+            return base.Get<Set>(id);
         }
 
-        public IQueryable<Data.Models.Set> Table()
+        public IQueryable<Set> Table()
         {
-            return base.Table<Data.Models.Set>();
+            return base.Table<Set>();
         }
     }
 }

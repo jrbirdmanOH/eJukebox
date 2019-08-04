@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public partial class Performer
+    public partial class Performer : DomainObject
     {
         public Performer()
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public partial class Set
+    public partial class Set : DomainObject
     {
         public Set()
         {

@@ -7,17 +7,17 @@ namespace Data.Models
     {
         public Gig()
         {
-            GigCoupon = new HashSet<GigCoupon>();
-            GigSong = new HashSet<GigSong>();
-            Set = new HashSet<Set>();
+            Coupons = new HashSet<GigCoupon>();
+            Songs = new HashSet<GigSong>();
+            Sets = new HashSet<Set>();
         }
 
         public int Id { get; set; }
         public string Venue { get; set; }
         public DateTime Date { get; set; }
 
-        public virtual ICollection<GigCoupon> GigCoupon { get; set; }
-        public virtual ICollection<GigSong> GigSong { get; set; }
-        public virtual ICollection<Set> Set { get; set; }
+        public virtual ICollection<GigSong> Songs { get; set; }
+        public virtual ICollection<GigCoupon> Coupons { get; set; }
+        public virtual ICollection<Set> Sets { get; set; }
     }
 }

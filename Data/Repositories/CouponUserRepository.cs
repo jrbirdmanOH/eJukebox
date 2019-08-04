@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface ICouponUserRepository
     {
-        Domain.CouponUser Add(Domain.CouponUser entity);
-        Domain.CouponUser Get(int id);
-        IQueryable<Data.Models.CouponUser> Table();
+        CouponUser Add(CouponUser entity);
+        CouponUser Get(int id);
+        IQueryable<CouponUser> Table();
     }
 
     public class CouponUserRepository : Repository, ICouponUserRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.CouponUser Add(Domain.CouponUser domain)
+        public CouponUser Add(CouponUser entity)
         {
-            return base.Add<Data.Models.CouponUser>(domain.ToEntity()).ToDomain();
+            return base.Add<CouponUser>(entity);
         }
 
-        public void Update(Domain.CouponUser updatedDomain)
+        public void Update(CouponUser updatedEntity)
         {
-            base.Save<Data.Models.CouponUser>(updatedDomain.ToEntity(), updatedDomain.CouponId, updatedDomain.UserId);
+            base.Save<CouponUser>(updatedEntity, updatedEntity.CouponId, updatedEntity.UserId);
         }
 
-        public Domain.CouponUser Get(int id)
+        public CouponUser Get(int id)
         {
-            return base.Get<Data.Models.CouponUser>(id).ToDomain();
+            return base.Get<CouponUser>(id);
         }
 
-        public IQueryable<Data.Models.CouponUser> Table()
+        public IQueryable<CouponUser> Table()
         {
-            return base.Table<Data.Models.CouponUser>();
+            return base.Table<CouponUser>();
         }
     }
 }

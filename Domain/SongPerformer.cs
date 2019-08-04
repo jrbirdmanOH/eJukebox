@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public partial class SongPerformer
+    public partial class SongPerformer : DomainObject
     {
         public int SongId { get; set; }
         public int PerformerId { get; set; }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface IGigCouponRepository
     {
-        Domain.GigCoupon Add(Domain.GigCoupon entity);
-        Domain.GigCoupon Get(int id);
-        IQueryable<Data.Models.GigCoupon> Table();
+        GigCoupon Add(GigCoupon entity);
+        GigCoupon Get(int id);
+        IQueryable<GigCoupon> Table();
     }
 
     public class GigCouponRepository : Repository, IGigCouponRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.GigCoupon Add(Domain.GigCoupon domain)
+        public GigCoupon Add(GigCoupon entity)
         {
-            return base.Add<Data.Models.GigCoupon>(domain.ToEntity()).ToDomain();
+            return base.Add<GigCoupon>(entity);
         }
 
-        public void Update(Domain.GigCoupon updatedDomain)
+        public void Update(GigCoupon updatedEntity)
         {
-            base.Save<Data.Models.GigCoupon>(updatedDomain.ToEntity(), updatedDomain.GigId, updatedDomain.CouponId);
+            base.Save<GigCoupon>(updatedEntity, updatedEntity.GigId, updatedEntity.CouponId);
         }
 
-        public Domain.GigCoupon Get(int id)
+        public GigCoupon Get(int id)
         {
-            return base.Get<Data.Models.GigCoupon>(id).ToDomain();
+            return base.Get<GigCoupon>(id);
         }
 
-        public IQueryable<Data.Models.GigCoupon> Table()
+        public IQueryable<GigCoupon> Table()
         {
-            return base.Table<Data.Models.GigCoupon>();
+            return base.Table<GigCoupon>();
         }
     }
 }

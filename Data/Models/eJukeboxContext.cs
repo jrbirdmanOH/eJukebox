@@ -1,4 +1,5 @@
 ﻿using System;
+using DebugEFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -28,15 +29,13 @@ namespace Data.Models
         public virtual DbSet<SongPerformer> SongPerformer { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-        // Unable to generate entity type for table 'dbo.__RefactorLog'. Please see the warning messages.
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=ejukeboxdbsvr.database.windows.net;Initial Catalog=eJukebox;User ID=ejukeboxadmin;Password=^%o1qXuL0Q1V^kgfK9f6;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                optionsBuilder.UseLazyLoadingProxies();
+                optionsBuilder.UseLazyLoadingProxies(true); //this will make some tests in UnitTests1 be successful or ignored. Check methods in UnitTest1.cs that use LazyLoadingEnabled.
+                optionsBuilder.EnableLogging(true);
             }
         }
 
@@ -73,13 +72,13 @@ namespace Data.Models
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Coupon)
-                    .WithMany(p => p.CouponUser)
+                    .WithMany(p => p.Users)
                     .HasForeignKey(d => d.CouponId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CouponUser_Coupon");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.CouponUser)
+                    .WithMany(p => p.Coupons)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CouponUser_User");
@@ -99,13 +98,13 @@ namespace Data.Models
                 entity.HasKey(e => new { e.GigId, e.CouponId });
 
                 entity.HasOne(d => d.Coupon)
-                    .WithMany(p => p.GigCoupon)
+                    .WithMany(p => p.Gigs)
                     .HasForeignKey(d => d.CouponId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GigCoupon_Coupon");
 
                 entity.HasOne(d => d.Gig)
-                    .WithMany(p => p.GigCoupon)
+                    .WithMany(p => p.Coupons)
                     .HasForeignKey(d => d.GigId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GigCoupon_Gig");
@@ -116,13 +115,13 @@ namespace Data.Models
                 entity.HasKey(e => new { e.GigId, e.SongId });
 
                 entity.HasOne(d => d.Gig)
-                    .WithMany(p => p.GigSong)
+                    .WithMany(p => p.Songs)
                     .HasForeignKey(d => d.GigId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GigSong_Gig");
 
                 entity.HasOne(d => d.Song)
-                    .WithMany(p => p.GigSong)
+                    .WithMany(p => p.Gigs)
                     .HasForeignKey(d => d.SongId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GigSong_Song");
@@ -142,19 +141,19 @@ namespace Data.Models
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Set)
-                    .WithMany(p => p.Request)
+                    .WithMany(p => p.Requests)
                     .HasForeignKey(d => d.SetId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Request_Set");
 
                 entity.HasOne(d => d.Song)
-                    .WithMany(p => p.Request)
+                    .WithMany(p => p.Requests)
                     .HasForeignKey(d => d.SongId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Request_Song");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Request)
+                    .WithMany(p => p.Requests)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Request_User");
@@ -167,7 +166,7 @@ namespace Data.Models
                 entity.Property(e => e.Start).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Gig)
-                    .WithMany(p => p.Set)
+                    .WithMany(p => p.Sets)
                     .HasForeignKey(d => d.GigId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Set_Gig");
@@ -182,7 +181,7 @@ namespace Data.Models
                     .HasMaxLength(100);
 
                 entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Song)
+                    .WithMany(p => p.Songs)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_Song_ToCategory");
             });
@@ -192,13 +191,13 @@ namespace Data.Models
                 entity.HasKey(e => new { e.SongId, e.PerformerId });
 
                 entity.HasOne(d => d.Performer)
-                    .WithMany(p => p.SongPerformer)
+                    .WithMany(p => p.Songs)
                     .HasForeignKey(d => d.PerformerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SongPerformer_Performer");
 
                 entity.HasOne(d => d.Song)
-                    .WithMany(p => p.SongPerformer)
+                    .WithMany(p => p.Performers)
                     .HasForeignKey(d => d.SongId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SongPerformer_Song");

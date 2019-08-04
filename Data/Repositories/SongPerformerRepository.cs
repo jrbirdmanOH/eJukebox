@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface ISongPerformerRepository
     {
-        Domain.SongPerformer Add(Domain.SongPerformer entity);
-        Domain.SongPerformer Get(int id);
-        IQueryable<Data.Models.SongPerformer> Table();
+        SongPerformer Add(SongPerformer entity);
+        SongPerformer Get(int id);
+        IQueryable<SongPerformer> Table();
     }
 
     public class SongPerformerRepository : Repository, ISongPerformerRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.SongPerformer Add(Domain.SongPerformer domain)
+        public SongPerformer Add(SongPerformer entity)
         {
-            return base.Add<Data.Models.SongPerformer>(domain.ToEntity()).ToDomain();
+            return base.Add<SongPerformer>(entity);
         }
 
-        public void Update(Domain.SongPerformer updatedDomain)
+        public void Update(SongPerformer updatedEntity)
         {
-            base.Save<Data.Models.SongPerformer>(updatedDomain.ToEntity(), updatedDomain.SongId, updatedDomain.PerformerId);
+            base.Save<SongPerformer>(updatedEntity, updatedEntity.SongId, updatedEntity.PerformerId);
         }
 
-        public Domain.SongPerformer Get(int id)
+        public SongPerformer Get(int id)
         {
-            return base.Get<Data.Models.SongPerformer>(id).ToDomain();
+            return base.Get<SongPerformer>(id);
         }
 
-        public IQueryable<Data.Models.SongPerformer> Table()
+        public IQueryable<SongPerformer> Table()
         {
-            return base.Table<Data.Models.SongPerformer>();
+            return base.Table<SongPerformer>();
         }
     }
 }

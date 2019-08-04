@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public partial class CouponUser
+    public partial class CouponUser : DomainObject
     {
         public int CouponId { get; set; }
         public int UserId { get; set; }

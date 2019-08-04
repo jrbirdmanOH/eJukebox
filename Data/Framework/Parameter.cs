@@ -6,6 +6,7 @@ namespace Data.Framework
     {
         public abstract Type Type { get; }
     }
+
     public class Parameter<T> : Parameter
     {
         public T Value { get; private set; }

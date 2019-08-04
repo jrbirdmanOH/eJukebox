@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface ICategoryRepository
     {
-        Domain.Category Add(Domain.Category entity);
-        Domain.Category Get(int id);
-        IQueryable<Data.Models.Category> Table();
+        Category Add(Category entity);
+        Category Get(int id);
+        IQueryable<Category> Table();
     }
 
     public class CategoryRepository : Repository, ICategoryRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.Category Add(Domain.Category domain)
+        public Category Add(Category entity)
         {
-            return base.Add<Data.Models.Category>(domain.ToEntity()).ToDomain();
+            return base.Add<Category>(entity);
         }
 
-        public void Update(Domain.Category updatedDomain)
+        public void Update(Category updatedEntity)
         {
-            base.Save<Data.Models.Category>(updatedDomain.ToEntity(), updatedDomain.Id);
+            base.Save<Category>(updatedEntity, updatedEntity.Id);
         }
 
-        public Domain.Category Get(int id)
+        public Category Get(int id)
         {
-            return base.Get<Data.Models.Category>(id).ToDomain();
+            return base.Get<Category>(id);
         }
 
-        public IQueryable<Data.Models.Category> Table()
+        public IQueryable<Category> Table()
         {
-            return base.Table<Data.Models.Category>();
+            return base.Table<Category>();
         }
     }
 }

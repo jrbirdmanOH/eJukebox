@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface IRequestRepository
     {
-        Domain.Request Add(Domain.Request entity);
-        Domain.Request Get(int id);
-        IQueryable<Data.Models.Request> Table();
+        Request Add(Request entity);
+        Request Get(int id);
+        IQueryable<Request> Table();
     }
 
     public class RequestRepository : Repository, IRequestRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.Request Add(Domain.Request domain)
+        public Request Add(Request entity)
         {
-            return base.Add<Data.Models.Request>(domain.ToEntity()).ToDomain();
+            return base.Add<Request>(entity);
         }
 
-        public void Update(Domain.Request updatedDomain)
+        public void Update(Request updatedEntity)
         {
-            base.Save<Data.Models.Request>(updatedDomain.ToEntity(), updatedDomain.Id);
+            base.Save<Request>(updatedEntity, updatedEntity.Id);
         }
 
-        public Domain.Request Get(int id)
+        public Request Get(int id)
         {
-            return base.Get<Data.Models.Request>(id).ToDomain();
+            return base.Get<Request>(id);
         }
 
-        public IQueryable<Data.Models.Request> Table()
+        public IQueryable<Request> Table()
         {
-            return base.Table<Data.Models.Request>();
+            return base.Table<Request>();
         }
     }
 }

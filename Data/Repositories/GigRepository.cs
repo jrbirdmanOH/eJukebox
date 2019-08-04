@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface IGigRepository
     {
-        Domain.Gig Add(Domain.Gig entity);
-        Domain.Gig Get(int id);
-        IQueryable<Data.Models.Gig> Table();
+        Gig Add(Gig entity);
+        Gig Get(int id);
+        DbSet<Gig> Table();
     }
 
     public class GigRepository : Repository, IGigRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.Gig Add(Domain.Gig domain)
+        public Gig Add(Gig entity)
         {
-            return base.Add<Data.Models.Gig>(domain.ToEntity()).ToDomain();
+            return base.Add<Gig>(entity);
         }
 
-        public void Update(Domain.Gig updatedDomain)
+        public void Update(Gig updatedEntity)
         {
-            base.Save<Data.Models.Gig>(updatedDomain.ToEntity(), updatedDomain.Id);
+            base.Save<Gig>(updatedEntity, updatedEntity.Id);
         }
 
-        public Domain.Gig Get(int id)
+        public Gig Get(int id)
         {
-            return base.Get<Data.Models.Gig>(id).ToDomain();
+            return base.Get<Gig>(id);
         }
 
-        public IQueryable<Data.Models.Gig> Table()
+        public DbSet<Gig> Table()
         {
-            return base.Table<Data.Models.Gig>();
+            return base.Table<Gig>();
         }
     }
 }

@@ -7,8 +7,8 @@ namespace Data.Models
     {
         public Coupon()
         {
-            CouponUser = new HashSet<CouponUser>();
-            GigCoupon = new HashSet<GigCoupon>();
+            Users = new HashSet<CouponUser>();
+            Gigs = new HashSet<GigCoupon>();
         }
 
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Data.Models
         public DateTime EndDate { get; set; }
         public byte[] CouponImage { get; set; }
 
-        public virtual ICollection<CouponUser> CouponUser { get; set; }
-        public virtual ICollection<GigCoupon> GigCoupon { get; set; }
+        public virtual ICollection<CouponUser> Users { get; set; }
+        public virtual ICollection<GigCoupon> Gigs { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +10,9 @@ namespace Data.Repositories
 {
     public interface IPerformerRepository
     {
-        Domain.Performer Add(Domain.Performer entity);
-        Domain.Performer Get(int id);
-        IQueryable<Data.Models.Performer> Table();
+        Performer Add(Performer entity);
+        Performer Get(int id);
+        IQueryable<Performer> Table();
     }
 
     public class PerformerRepository : Repository, IPerformerRepository
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.Performer Add(Domain.Performer domain)
+        public Performer Add(Performer entity)
         {
-            return base.Add<Data.Models.Performer>(domain.ToEntity()).ToDomain();
+            return base.Add<Performer>(entity);
         }
 
-        public void Update(Domain.Performer updatedDomain)
+        public void Update(Performer updatedEntity)
         {
-            base.Save<Data.Models.Performer>(updatedDomain.ToEntity(), updatedDomain.Id);
+            base.Save<Performer>(updatedEntity, updatedEntity.Id);
         }
 
-        public Domain.Performer Get(int id)
+        public Performer Get(int id)
         {
-            return base.Get<Data.Models.Performer>(id).ToDomain();
+            return base.Get<Performer>(id);
         }
 
-        public IQueryable<Data.Models.Performer> Table()
+        public IQueryable<Performer> Table()
         {
-            return base.Table<Data.Models.Performer>();
+            return base.Table<Performer>();
         }
     }
 }

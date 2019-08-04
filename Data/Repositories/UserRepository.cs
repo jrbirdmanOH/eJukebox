@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Data.Mappers;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +10,8 @@ namespace Data.Repositories
 {
     public interface IUserRepository
     {
-        Domain.User Add(Domain.User entity);
-        Domain.User Get(int id);
+        User Add(User entity);
+        User Get(int id);
         IQueryable<Data.Models.User> Table();
     }
 
@@ -22,24 +21,24 @@ namespace Data.Repositories
         {
         }
 
-        public Domain.User Add(Domain.User domain)
+        public User Add(User entity)
         {
-            return base.Add<Data.Models.User>(domain.ToEntity()).ToDomain();
+            return base.Add<User>(entity);
         }
 
-        public void Update(Domain.User updatedDomain)
+        public void Update(User updated)
         {
-            base.Save<Data.Models.User>(updatedDomain.ToEntity(), updatedDomain.Id);
+            base.Save<User>(updated, updated.Id);
         }
 
-        public Domain.User Get(int id)
+        public User Get(int id)
         {
-            return base.Get<Data.Models.User>(id).ToDomain();
+            return base.Get<User>(id);
         }
 
-        public IQueryable<Data.Models.User> Table()
+        public IQueryable<User> Table()
         {
-            return base.Table<Data.Models.User>();
+            return base.Table<User>();
         }
     }
 }

@@ -7,8 +7,8 @@ namespace Data.Models
     {
         public User()
         {
-            CouponUser = new HashSet<CouponUser>();
-            Request = new HashSet<Request>();
+            Coupons = new HashSet<CouponUser>();
+            Requests = new HashSet<Request>();
         }
 
         public int Id { get; set; }
@@ -16,7 +16,7 @@ namespace Data.Models
         public string Password { get; set; }
         public DateTime? Added { get; set; }
 
-        public virtual ICollection<CouponUser> CouponUser { get; set; }
-        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<CouponUser> Coupons { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }
