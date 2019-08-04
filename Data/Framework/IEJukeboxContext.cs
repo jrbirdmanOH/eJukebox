@@ -24,7 +24,7 @@ namespace Data.Framework
         IList<T> GetEntityFromFunction<T>(string function, params Parameter[] parameters);
         void ExecuteStoredProcedure(string procedure, params Parameter[] parameters);
         /// <summary>
-        /// A statement transaction is for a single statement. If a statement transaction is nested in another transaction
+        /// A statement transaction is for a single statement. If a statemenwt transaction is nested in another transaction
         /// it does not cause a flush.
         /// </summary>
         ITransaction BeginStatementTransaction();

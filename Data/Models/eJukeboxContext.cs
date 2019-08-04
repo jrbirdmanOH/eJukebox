@@ -2,6 +2,7 @@
 using DebugEFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace Data.Models
 {
@@ -33,9 +34,6 @@ namespace Data.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=ejukeboxdbsvr.database.windows.net;Initial Catalog=eJukebox;User ID=ejukeboxadmin;Password=^%o1qXuL0Q1V^kgfK9f6;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                optionsBuilder.UseLazyLoadingProxies(true); //this will make some tests in UnitTests1 be successful or ignored. Check methods in UnitTest1.cs that use LazyLoadingEnabled.
-                optionsBuilder.EnableLogging(true);
             }
         }
 
